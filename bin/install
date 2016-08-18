@@ -79,3 +79,6 @@ if [ "${OPENSHIFT_APP_DNS}" == "${OPENSHIFT_GEAR_DNS}" ]; then
   $result+=" -g ${OPENSHIFT_GEAR_UUID}"
 fi
 client_result "${result}"
+
+component_name=$(${OPENSHIFT_DATA_DIR}.bigsql/pgc list | grep postgis | awk '{ print $2 }')
+${OPENSHIFT_DATA_DIR}.bigsql/pgc install $component_name
